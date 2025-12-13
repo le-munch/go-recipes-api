@@ -11,6 +11,20 @@ builder.Services.AddSwaggerGen();
 // Add this in your Program.cs or Startup.cs configuration
 builder.Services.AddDbContext<RecipeContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("LocalDevCors", policy =>
+    {
+        policy
+            .WithOrigins(
+                "http://localhost:4200"
+            )
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+        // If you use cookies/auth, add:
+        // .AllowCredentials();
+    });
+});
 
 var app = builder.Build();
 
@@ -20,6 +34,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("LocalDevCors");
 
 app.UseHttpsRedirection();
 

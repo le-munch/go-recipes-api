@@ -1,6 +1,6 @@
 @GoRecipesApi_HostAddress = http://localhost:5257
 
-GET {{GoRecipesApi_HostAddress}}/weatherforecast/
+GET {{GoRecipesApi_HostAddress}}/api/recipes
 Accept: application/json
 
 ###

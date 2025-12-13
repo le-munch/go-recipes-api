@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 namespace GoRecipesApi.Controllers;
 
 [ApiController]
-[Route("recipes")]
+[Route("api/recipes")]
 public class RecipeController : ControllerBase
 {
     private readonly RecipeContext _context;
-
+    
     public RecipeController(RecipeContext context)
     {
         _context = context;
